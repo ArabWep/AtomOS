@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtomOS - The lightest custom windows ever</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00c3ff;
+            --secondary-color: #00ffff;
+            --background-color: #0a192f;
+            --card-background: #0c2240;
+            --text-color: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(10, 25, 47, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 5s ease-in-out infinite;
+        }
+
+        @keyframes gradientText {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+        }
+
+        .features, .download, .community {
+            padding: 5rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .feature-grid, .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0, 195, 255, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        .community {
+            text-align: center;
+        }
+
+        .community p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: var(--card-background);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .feature-grid, .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="https://via.placeholder.com/40" alt="AtomOS Logo">
+                    AtomOS
+                </div>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>The lightest custom windows ever</h1>
+                <p>Get more than 30% ligher Experience with AtomOS</p>
+                <a href="#download" class="btn">Download Now</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="feature-grid">
+                    <div class="card">
+                        <h3>No bloatwares</h3>
+                        <p>A lighter Experience with zero bloatwares.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Enhanced Security</h3>
+                        <p>Stay protected with malwarebytes.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Customization</h3>
+                        <p>Get more than 40 themes to choose from.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Compatibility</h3>
+                        <p>run on only 0.8gb ram devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download">
+            <div class="container">
+                <h2>AtomOS 10</h2>
+                <div class="download-grid">
+                    <div class="card">
+                        <h3>AtomOS Lite</h3>
+                        <p>For low-spec devices</p>
+                        <p>Version: 21h2</p>
+                        <p>Size: ~2GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                    <div class="card">
+                        <h3>AtomOS Standard</h3>
+                        <p>For most users</p>
+                        <p>Version: 21h2</p>
+                        <p>Size: ~3GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                    <div class="card">
+                        <h3>AtomOS Extreme</h3>
+                        <p>The Most stable windows Experience you can find</p>
+                        <p>Version: 21h2</p>
+                        <p>Size: ~3.5GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="download" class="download">
+            <div class="container">
+                <h2>AtomOS 11</h2>
+                <div class="download-grid">
+                    <div class="card">
+                        <h3>AtomOS Lite</h3>
+                        <p>For low-spec devices</p>
+                        <p>Version: 22h2</p>
+                        <p>Size: 2.1 GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                    <div class="card">
+                        <h3>AtomOS Standard</h3>
+                        <p>For most users</p>
+                        <p>Version: 23h2</p>
+                        <p>Size: 3.5 GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                    <div class="card">
+                        <h3>AtomOS Extreme</h3>
+                        <p>The Most stable windows Experience you can find</p>
+                        <p>Version: 23h2</p>
+                        <p>Size: 4.2 GB</p>
+                        <a href="#" class="btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="community">
+            <div class="container">
+                <h2>Join Our Community</h2>
+                <p>Connect with other AtomOS users, get support, and contribute to the project.</p>
+                <a href="https://dsc.gg/chlorideos" class="btn">Join Discord</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ProjectChloride. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 195, 255, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
