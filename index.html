@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtomOS - The lightest custom windows ever</title>
+    <title>The lightest custom windows ever</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -177,6 +177,21 @@
             box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
         }
 
+        /* Secondary button style */
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            margin-left: 10px; /* Space between buttons */
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+        }
+
         .features, .download, .community {
             padding: 5rem 0;
         }
@@ -272,7 +287,7 @@
     <main>
         <section id="home" class="hero">
             <div class="container">
-                <h1>The lightest custom windows ever</h1>
+                <h1>UThe lightest custom windows ever</h1>
                 <p>Get more than 30% ligher Experience with AtomOS</p>
                 <a href="#download" class="btn">Download Now</a>
             </div>
@@ -312,141 +327,74 @@
                         <p>Version: 1909</p>
                         <p>Size: ~1.3GB</p>
                         <a href="https://www.mediafire.com/file/4hj024ftj1frcf5/AtomOS_10_Lite_1909_v1.rar/file" class="btn">Download</a>
+                        <a href="https://www.youtube.com/watch?v=r6mNf4cIfPQ&t=30s" class="btn secondary-btn">Learn More</a>
                     </div>
                     <div class="card">
                         <h3>AtomOS Standard</h3>
                         <p>The best option for you, Based on AtlasOS</p>
                         <p>Version: 21h2</p>
                         <p>Size: ~1.6GB</p>
-                        <a href="https://mega.nz/file/tlNiTKTJ#iedfBLFry8f5u8NO-i8abd6kJHeRDA32c2-uwS8J6wo" class="btn">Downlaod</a>
+                        <a href="https://mega.nz/file/tlNiTKTJ#iedfBLFry8f5u8NO-i8abd6kJHeRDA32c2-uwS8J6wo" class="btn">Download</a>
+                        <a href="https://www.youtube.com/watch?v=V4JER6Pr1wg&t=52s" class="btn secondary-btn">Learn More</a>
                     </div>
                     <div class="card">
-                        <h3>AtomOS Extreme</h3>
+                        <h3>AtomOS Extreme
+                        </h3>
                         <p>The Most stable windows Experience you can find</p>
-                        <p>Version: 21h2</p>
-                        <p>Size: ~3.5GB</p>
+                        <p>Version: Soon</p>
+                        <p>Size: Soon</p>
                         <a href="#" class="btn">Soon</a>
+                        <a href="#" class="btn secondary-btn">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
+
+
         <section id="download" class="download">
-            <div class="container">
-                <h2>AtomOS 11</h2>
-                <div class="download-grid">
-                    <div class="card">
-                        <h3>AtomOS Lite</h3>
-                        <p>For low-spec devices</p>
-                        <p>Version: 23h2</p>
-                        <p>Size: 2.1 GB</p>
-                        <a href="https://mega.nz/file/BhdGjQaR#zoJRqsVI7TylbS1uVPhqtGYOkpIJOhKtTRkT25nI55M" class="btn">Download</a>
-                    </div>
-                    <div class="card">
-                        <h3>AtomOS Standard</h3>
-                        <p>For most users</p>
-                        <p>Version: 22h2</p>
-                        <p>Size: 2.4 GB</p>
-                        <a href="#" class="btn">Soon</a>
-                    </div>
-                    <div class="card">
-                        <h3>AtomOS Extreme</h3>
-                        <p>The Most stable windows Experience you can find</p>
-                        <p>Version: 23h2</p>
-                        <p>Size: 4.7 GB</p>
-                        <a href="#" class="btn">Soon</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="container">
+              <h2>AtomOS 11</h2>
+              <div class="download-grid">
+                  <div class="card">
+                      <h3>AtomOS Lite</h3>
+                      <p>For low-spec devices</p>
+                      <p>Version: 23h2</p>
+                      <p>Size: 1.8GB</p>
+                      <a href="https://mega.nz/file/BhdGjQaR#zoJRqsVI7TylbS1uVPhqtGYOkpIJOhKtTRkT25nI55M" class="btn">Download</a>
+                      <a href="https://www.youtube.com/watch?v=JmAD9YxAc3s&t=10s" class="btn secondary-btn">Learn More</a>
+                  </div>
+                  <div class="card">
+                      <h3>AtomOS Standard</h3>
+                      <p>Recommended for most users</p>
+                      <p>Version: Soon</p>
+                      <p>Size: Soon</p>
+                      <a href="#" class="btn">Soon</a>
+                      <a href="#" class="btn secondary-btn">Learn More</a>
+                  </div>
+                  <div class="card">
+                      <h3>AtomOS Extreme</h3>
+                      <p>Soon</p>
+                      <p>Version: Soon</p>
+                      <p>Size: Soon</p>
+                      <a href="#" class="btn">Soon</a>
+                      <a href="#" class="btn secondary-btn">Learn More</a>
+                  </div>
+              </div>
+          </div>
+      </section>
 
         <section id="community" class="community">
             <div class="container">
                 <h2>Join Our Community</h2>
                 <p>Connect with other AtomOS users, get support, and contribute to the project.</p>
-                <a href="https://dsc.gg/chlorideos" class="btn">Join Discord</a>
+                <a href="https://dsc.gg/chlorideos" class="btn">Discord</a>
+                <a href="https://www.youtube.com/@projectatomos/videos" class="btn secondary-btn">Youtube</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 ProjectChloride. All rights reserved.</p>
-        </div>
+        <p>&copy; © 2024 ProjectChloride. All rights reserved.</p>
     </footer>
-
-    <script>
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 100;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 195, 255, 0.5)';
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Scroll effect for header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            header.classList.toggle('scrolled', window.scrollY > 0);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
