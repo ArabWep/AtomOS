@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The lightest custom windows ever</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>AtomOS - Next-Gen Windows Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         :root {
-            --primary-color: #00c3ff;
-            --secondary-color: #00ffff;
-            --background-color: #0a192f;
-            --card-background: #0c2240;
-            --text-color: #ffffff;
-            --text-muted: #a0aec0;
+            --bg-primary: #0a0e17;
+            --bg-secondary: #141c2b;
+            --text-primary: #e0e6ed;
+            --text-secondary: #a0a8b8;
+            --accent-blue: #3a86ff;
+            --accent-cyan: #00e5ff;
+            --gradient-blue: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
         }
 
         * {
@@ -22,140 +25,144 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         header {
-            background-color: rgba(10, 25, 47, 0.8);
+            background-color: rgba(10, 14, 23, 0.8);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            padding: 1rem 0;
             transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background-color: rgba(10, 25, 47, 0.95);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
 
-        .logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        nav ul {
+        .nav-links {
             display: flex;
             list-style: none;
         }
 
-        nav ul li {
-            margin-left: 1.5rem;
+        .nav-links li {
+            margin-left: 2rem;
         }
 
-        nav ul li a {
-            color: var(--text-color);
+        .nav-links a {
+            color: var(--text-primary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
         }
 
-        nav ul li a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--primary-color);
+            background: var(--gradient-blue);
             transition: width 0.3s ease;
         }
 
-        nav ul li a:hover::after {
+        .nav-links a:hover::after {
             width: 100%;
-        }
-
-        #particleCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
         }
 
         .hero {
-            padding: 150px 0 100px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientText 5s ease-in-out infinite;
-        }
-
-        @keyframes gradientText {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-color);
             position: relative;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, var(--accent-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.05; }
+            100% { opacity: 0.2; }
+        }
+
+        .hero-content {
+            position: relative;
             z-index: 1;
         }
 
-        .btn::before {
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 5s ease infinite;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -163,229 +170,624 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: all 0.5s;
-            z-index: -1;
+            transition: all 0.5s ease;
         }
 
-        .btn:hover::before {
+        .cta-button:hover::before {
             left: 100%;
         }
 
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 134, 255, 0.3);
         }
 
-        /* Secondary button style */
-        .secondary-btn {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            margin-left: 10px; /* Space between buttons */
-            transition: all 0.3s ease;
+        .features {
+            padding: 8rem 0;
+            background-color: var(--bg-secondary);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
         }
 
-        .secondary-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
-        }
-
-        .features, .download, .community {
-            padding: 5rem 0;
-        }
-
-        h2 {
-            font-size: 2.5rem;
+        .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .feature-grid, .download-grid {
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
 
-        .card {
-            background-color: var(--card-background);
-            border-radius: 15px;
-            padding: 1.5rem;
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-blue), transparent);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+            transform: translate(25%, 25%);
+        }
+
+        .feature-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0, 195, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(58, 134, 255, 0.2);
         }
 
-        .card h3 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
+        .feature-card i {
+            font-size: 3.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
-        .card p {
-            color: var(--text-muted);
+        .feature-card p {
+            color: var(--text-secondary);
         }
 
-        .community {
+        .about {
+            padding: 8rem 0;
+            background-color: var(--bg-primary);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 20px;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: translate(-10px, -10px);
+        }
+
+        .about-image:hover::before {
+            transform: translate(10px, 10px);
+        }
+
+        .downloads {
+            padding: 8rem 0;
+            background-color: var(--bg-secondary);
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%);
+        }
+
+        .download-section {
+            margin-bottom: 4rem;
+        }
+
+        .download-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-blue);
             text-align: center;
         }
 
-        .community p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .download-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-blue), transparent);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .download-card:hover::before {
+            opacity: 0.1;
+            transform: translate(25%, 25%);
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(58, 134, 255, 0.2);
+        }
+
+        .download-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .download-card p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: var(--bg-primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .download-button:hover::before {
+            left: 100%;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 134, 255, 0.3);
         }
 
         footer {
-            background-color: var(--card-background);
+            background-color: var(--bg-secondary);
+            padding: 4rem 0;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 5rem;
         }
 
-        @media (max-width: 768px) {
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
             h1 {
                 font-size: 3rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
-            .feature-grid, .download-grid {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 2.5rem;
             }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Animated background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        .animated-bg span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .animated-bg span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .animated-bg span:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .animated-bg span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .animated-bg span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            position: relative;
+            transform: translateY(150px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
         }
     </style>
 </head>
 <body>
-    <canvas id="particleCanvas"></canvas>
+    <div class="animated-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <img src="https://via.placeholder.com/40" alt="AtomOS Logo">
-                    AtomOS
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#download">Download</a></li>
-                    <li><a href="#community">Community</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="container">
+            <a href="#" class="logo">AtomOS</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <div class="container">
-                <h1>The lightest custom windows ever</h1>
-                <p>Get more than 30% ligher Experience with AtomOS</p>
-                <a href="#download" class="btn">Download Now</a>
+            <div class="hero-content">
+                <h1>Welcome to AtomOS</h1>
+                <p>Revolutionizing Your Windows Experience</p>
+                <a href="#downloads" class="cta-button">Get Started</a>
             </div>
         </section>
 
         <section id="features" class="features">
             <div class="container">
-                <h2>Features</h2>
+                <h2 class="section-title reveal">Key Features</h2>
                 <div class="feature-grid">
-                    <div class="card">
-                        <h3>No bloatwares</h3>
-                        <p>A lighter Experience with zero bloatwares.</p>
+                    <div class="feature-card reveal">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Performance Optimization</h3>
+                        <p>Boost your system's speed and efficiency with our advanced tweaking tools.</p>
                     </div>
-                    <div class="card">
+                    <div class="feature-card reveal">
+                        <i class="fas fa-shield-alt"></i>
                         <h3>Enhanced Security</h3>
-                        <p>Stay protected with malwarebytes, pre installed.</p>
+                        <p>Protect your system with our cutting-edge security enhancements and optimizations.</p>
                     </div>
-                    <div class="card">
-                        <h3>Customization</h3>
-                        <p>Get more than 40 themes to choose from.</p>
+                    <div class="feature-card reveal">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>Customization Suite</h3>
+                        <p>Personalize your Windows experience with our extensive customization options.</p>
                     </div>
-                    <div class="card">
-                        <h3>Compatibility</h3>
-                        <p>run on only 2gb ram devices.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="download" class="download">
-            <div class="container">
-                <h2>AtomOS 10</h2>
-                <div class="download-grid">
-                    <div class="card">
-                        <h3>AtomOS Lite</h3>
-                        <p>For low-spec devices</p>
-                        <p>Version: 1909</p>
-                        <p>Size: ~1.3GB
-</p>
-                        <a href="https://www.mediafire.com/file/4hj024ftj1frcf5/AtomOS_10_Lite_1909_v1.rar/file" class="btn">Download</a>
-                        <a href="https://www.youtube.com/watch?v=r6mNf4cIfPQ&t=30s" class="btn secondary-btn">Learn More</a>
-                    </div>
-
-
-                    <div class="card">
-                        <h3>AtomOS Standard
-                        </h3>
-                        <p>The Best windows 10 Experience you can find</p>
-                        <p>Version: 22h2</p>
-                        <p>Size: 3.5GB</p>
-                        <a href="https://qiwi.gg/file/5DET3805-AtomOS1022h2Standard" class="btn">Download</a>
-                        <a href="https://youtu.be/2OxJUjBRXYI" class="btn secondary-btn">Learn More</a>
+                    <div class="feature-card reveal">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Automatic Updates</h3>
+                        <p>Stay up-to-date with the latest features and improvements through seamless updates.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <section id="download" class="download">
-          <div class="container">
-              <h2>AtomOS 11</h2>
-              <div class="download-grid">
-                  <div class="card">
-                      <h3>AtomOS Lite</h3>
-                      <p>The Lighest, Smallest Windows 11 you can find</p>
-                      <p>Version: 24h2</p>
-                      <p>Size: 1.3GB</p>
-                      <a href="https://qiwi.gg/file/saHR5820-AtomOS11Lite24h2v1" class="btn">Download</a>
-                      <a href="https://www.youtube.com/watch?v=_kkl_m3oRgk&t=11s" class="btn secondary-btn">Learn More</a>
-     
-                  </div>
-
-
-
-                  <div class="card">
-                      <h3>AtomOS Standard</h3>
-                      <p>A Light Weight Windows 11 with all of your Apps, Tools, Drivers</p>
-                      <p>Version: 24h2</p>
-                      <p>Size: 2.6GB</p>
-                      <a href="https://gofile.io/d/7K250C" class="btn">Download</a>
-                      <a href="https://www.youtube.com/watch?v=OybSedPvDjA" class="btn secondary-btn">Learn More</a>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-        <section id="community" class="community">
+        <section id="about" class="about">
             <div class="container">
-                <h2>Join Our Community</h2>
-                <p>Connect with other AtomOS users, get support, and contribute to the project.</p>
-                <a href="https://dsc.gg/chlorideos" class="btn">Discord</a>
-                <a href="https://www.youtube.com/@projectatomos/videos" class="btn secondary-btn">Youtube</a>
+                <h2 class="section-title reveal">About AtomOS</h2>
+                <div class="about-content">
+                    <div class="about-text reveal">
+                        <p>AtomOS is a cutting-edge platform that offers custom tweaking utilities and a modified Windows operating system. Our goal is to provide users with a powerful, efficient, and personalized computing experience.</p>
+                        <p>With years of expertise in system optimization and customization, we've developed a suite of tools and a custom OS that cater to both casual users and power users alike.</p>
+                    </div>
+                    <div class="about-image reveal">
+                        <img src="1.png" alt="AtomOS Interface">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="downloads" class="downloads">
+            <div class="container">
+                <h2 class="section-title reveal">Downloads</h2>
+                
+                <div class="download-section">
+                    <h3>Windows 10 Builds</h3>
+                    <div class="download-grid">
+                        <div class="download-card reveal">
+                            <h4>AtomOS 10 Lite</h4>
+                            <p>System: Good for old hardware</p>
+                            <p>Version: 1909</p>
+                            <p>Image size: 1.3 GB</p>
+                            <a href="https://www.mediafire.com/file/4hj024ftj1frcf5/AtomOS_10_Lite_1909_v1.rar/file" class="download-button">Download</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>AtomOS 10 Standard</h4>
+                            <p>System: Good for mid-range hardware</p>
+                            <p>Version: 22H2</p>
+                            <p>Image size: 3.5 GB</p>
+                            <a href="https://qiwi.gg/file/5DET3805-AtomOS1022h2Standard" class="download-button">Download</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>Coming Soon...</h4>
+                            <p>System: TBA</p>
+                            <p>Version: TBA</p>
+                            <p>Image size: TBA</p>
+                            <a href="#" class="download-button" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>Coming Soon...</h4>
+                            <p>System: TBA</p>
+                            <p>Version: TBA</p>
+                            <p>Image size: TBA</p>
+                            <a href="#" class="download-button" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <h3>Windows 11 Builds</h3>
+                    <div class="download-grid">
+                        <div class="download-card reveal">
+                            <h4>AtomOS 11 Lite</h4>
+                            <p>System: Best for old hardware</p>
+                            <p>Version: 24H2</p>
+                            <p>Image size: 1.3 GB</p>
+                            <a href="https://qiwi.gg/file/saHR5820-AtomOS11Lite24h2v1" class="download-button">Download</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>AtomOS 11 Standard</h4>
+                            <p>System: Good for mid-range hardware</p>
+                            <p>Version: 24H2</p>
+                            <p>Image size: 2.6 GB</p>
+                            <a href="https://gofile.io/d/7K250C" class="download-button">Download</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>Coming Soon...</h4>
+                            <p>System: TBA</p>
+                            <p>Version: TBA</p>
+                            <p>Image size: TBA</p>
+                            <a href="#" class="download-button" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+                        </div>
+                        <div class="download-card reveal">
+                            <h4>Coming Soon...</h4>
+                            <p>System: TBA</p>
+                            <p>Version: TBA</p>
+                            <p>Image size: TBA</p>
+                            <a href="#" class="download-button" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; © 2024 ProjectChloride. All rights reserved.</p>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#downloads">Downloads</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2024 AtomOS. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scroll reveal animation
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    } else {
+                        reveals[i].classList.remove("active");
+                    }
+                }
+            }
+
+            window.addEventListener("scroll", reveal);
+            reveal();
+
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(10, 14, 23, 0.95)';
+                    header.style.padding = '0.5rem 0';
+                } else {
+                    header.style.background = 'rgba(10, 14, 23, 0.8)';
+                    header.style.padding = '1rem 0';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
